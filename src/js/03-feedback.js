@@ -1,4 +1,4 @@
-var throttle = require('lodash.throttle');
+import throttle from 'lodash.throttle';
 
 const formRef = document.querySelector('.feedback-form');
 const messageRef = formRef.querySelector('textarea[name="message"]');
@@ -8,7 +8,7 @@ checkStorage();
 const formData = {};
 
 formRef.addEventListener('submit', onFormSubmit);
-formRef.addEventListener('input', onTextareaInput);
+formRef.addEventListener('input', throttle(onTextareaInput, 500));
 
 function onFormSubmit(e) {
   e.preventDefault();
